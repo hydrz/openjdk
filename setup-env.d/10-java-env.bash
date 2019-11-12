@@ -30,7 +30,7 @@ GetAvailableMemory() {
 
 # Setup default Java Options
 export JAVA_EGD_OPTS=${JAVA_EGD_OPTS:-"-Djava.security.egd=file:/dev/./urandom"}
-export JAVA_AGENTLIB_OPTS=${JAVA_AGENTLIB_OPTS:-"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9000"}
+export JAVA_AGENTLIB_OPTS=${JAVA_AGENTLIB_OPTS:-"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"}
 export JAVA_TMP_OPTS=${JAVA_TMP_OPTS:-$(if [[ -z ${TMPDIR} ]]; then echo ""; else echo "-Djava.io.tmpdir=$TMPDIR"; fi)}
 export JAVA_MEMORY_MB=${JAVA_MEMORY_MB:-$(GetAvailableMemory)}
 export HEAP_SIZE_RATIO=${HEAP_SIZE_RATIO:-"80"}
