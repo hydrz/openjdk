@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/setup-env.d/05-utils.bash
+source ./setup-env.d/05-utils.bash
 
 # If configured, output a thread dump and/or heap info on shutdown by wrapping the java process
 if is_true "${SHUTDOWN_LOGGING_THREAD_DUMP}" || is_true "${SHUTDOWN_LOGGING_HEAP_INFO}"; then

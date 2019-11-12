@@ -33,7 +33,7 @@ if [ "$1" = "java" -a -n "$JAVA_OPTS" ]; then
 fi
 
 # configure shutdown wrapper for diagnostics if enabled
-source /opt/shutdown/shutdown-env.bash
+source ./shutdown/shutdown-env.bash
 
 # exec the entry point arguments as a command
 echo "Start command: $*"
