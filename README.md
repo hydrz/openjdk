@@ -40,7 +40,7 @@ metadata:
 spec:
   containers:
     - name: java-kubernetes-container
-      image: gcr.io/google-appengine/openjdk
+      image: hydrz/openjdk
       resources:
         requests:
           memory: "32Mi"
