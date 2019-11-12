@@ -11,6 +11,7 @@ RUN sed -i 's/security.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list
 RUN \
     apt-get -q update \
     && apt-get -y -q --no-install-recommends install \
+    net-tools \
     telnet \
     vim \
 
