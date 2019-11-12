@@ -14,7 +14,7 @@ elif ! type "$1" &>/dev/null; then
 fi
 
 # scan the setup-env.d directory for scripts to source for additional setup
-if [ -d "${SETUP_ENV:=/setup-env.d}" ]; then
+if [ -d "${SETUP_ENV:=./setup-env.d}" ]; then
   for SCRIPT in $(ls "${SETUP_ENV}/"[0-9]*.bash | sort); do
     source ${SCRIPT}
   done
