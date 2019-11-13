@@ -2,6 +2,7 @@ FROM openjdk:8-jdk
 
 LABEL maintainer="hydrz <n.haoyuan@gmail.com>"
 
+RUN echo "Asia/Shanghai" > /etc/timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 修改aliyun源镜像
