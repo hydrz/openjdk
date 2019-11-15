@@ -8,7 +8,7 @@ custom runtime, you can write the Dockerfile like this:
 
 ```dockerfile
 FROM hydrz/openjdk
-COPY your-application.jar ./app.jar
+COPY your-application.jar $APP_DESTINATION
 ```
 
 That will add the JAR in the correct location for the Docker container.
@@ -19,7 +19,7 @@ For other Docker hosts, you'll need to create a Dockerfile based on this image t
 
 ```dockerfile
 FROM hydrz/openjdk
-COPY your-application.jar ./app.jar
+COPY your-application.jar $APP_DESTINATION
 ```
 
 You can then build the docker container using `docker build`.
@@ -78,6 +78,8 @@ If the default command (java) is used, then the entry point sources the [setup-e
 
 | Env Var                             | Description          | Type     | Default                                      |
 | ----------------------------------- | -------------------- | -------- | -------------------------------------------- |
+| `DBG_ENABLE`                        | Remote Debug         | boolean  | `true`                                       |
+| `SW_ENABLE`                         | Skywalking           | boolean  | `false`                                      |
 | `TMPDIR`                            | Temporary Directory  | dirname  |                                              |
 | `JAVA_TMP_OPTS`                     | JVM tmpdir args      | JVM args | `-Djava.io.tmpdir=${TMPDIR}`                 |
 | `JAVA_MEMORY_MB`                    | Available memory     | size     | Set by `/proc/meminfo`-400M                  |
