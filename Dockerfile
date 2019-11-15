@@ -28,6 +28,7 @@ RUN set -eux; \
     telnet \
     vim \
     ; \
+    apt-get clean; \
     rm -rf /var/lib/apt/lists/*
 
 # Default to UTF-8 file.encoding
@@ -65,14 +66,19 @@ RUN set -eux; \
 
 WORKDIR /root
 
-COPY wait-for-it.bash ./
-COPY docker-entrypoint.bash ./
-COPY setup-env.d ./setup-env.d/
-COPY shutdown ./shutdown/
-ADD app.jar ./app.jar
+ENV APP_DESTINATION app.jar
+
+ADD wait-for-it.bash ./
+ADD docker-entrypoint.bash ./
+ADD setup-env.d ./setup-env.d/
+ADD shutdown ./shutdown/
+ADD app.jar $APP_DESTINATION
 
 # arthas
 COPY --from=hengyunabc/arthas:3.1.3-no-jdk /opt/arthas ./arthas
+
+# skywalking
+ADD skywalking ./skywalking/
 
 RUN chmod +x ./docker-entrypoint.bash ./shutdown/*.bash ./setup-env.d/*.bash ./arthas/*.sh
 
