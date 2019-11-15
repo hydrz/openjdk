@@ -28,6 +28,7 @@ RUN set -eux; \
     telnet \
     vim \
     ; \
+    apt-get clean; \
     rm -rf /var/lib/apt/lists/*
 
 # Default to UTF-8 file.encoding
