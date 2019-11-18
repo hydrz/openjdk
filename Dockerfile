@@ -2,8 +2,8 @@ FROM buildpack-deps:stretch-scm
 
 LABEL maintainer="hydrz <n.haoyuan@gmail.com>"
 
-RUN echo "Asia/Shanghai" > /etc/timezone
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
 
 # 修改aliyun源镜像
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list
@@ -30,9 +30,6 @@ RUN set -eux; \
     ; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*
-
-# Default to UTF-8 file.encoding
-ENV LANG C.UTF-8
 
 ENV JAVA_HOME /usr/local/openjdk-8
 ENV PATH $JAVA_HOME/bin:$PATH

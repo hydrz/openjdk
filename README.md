@@ -76,22 +76,25 @@ The entry point for the openjdk8 image is [docker-entrypoint.bash](https://githu
 
 If the default command (java) is used, then the entry point sources the [setup-env.d/](https://github.com/hydrz/openjdk/tree/master/setup-env.d), which looks for supported features to be enabled and/or configured. The following table indicates the environment variables that may be used to enable/disable/configure features, any default values if they are not set:
 
-| Env Var                             | Description          | Type     | Default                                      |
-| ----------------------------------- | -------------------- | -------- | -------------------------------------------- |
-| `DBG_ENABLE`                        | Remote Debug         | boolean  | `true`                                       |
-| `SW_ENABLE`                         | Skywalking           | boolean  | `false`                                      |
-| `TMPDIR`                            | Temporary Directory  | dirname  |                                              |
-| `JAVA_TMP_OPTS`                     | JVM tmpdir args      | JVM args | `-Djava.io.tmpdir=${TMPDIR}`                 |
-| `JAVA_MEMORY_MB`                    | Available memory     | size     | Set by `/proc/meminfo`-400M                  |
-| `HEAP_SIZE_RATIO`                   | Memory for the heap  | percent  | 80                                           |
-| `HEAP_SIZE_MB`                      | Available heap       | size     | `${HEAP_SIZE_RATIO}`% of `${JAVA_MEMORY_MB}` |
-| `JAVA_HEAP_OPTS`                    | JVM heap args        | JVM args | `-Xms${HEAP_SIZE_MB}M -Xmx${HEAP_SIZE_MB}M`  |
-| `JAVA_GC_OPTS`                      | JVM GC args          | JVM args | `-XX:+UseG1GC` plus configuration            |
-| `JAVA_USER_OPTS`                    | JVM other args       | JVM args |                                              |
-| `JAVA_OPTS`                         | JVM args             | JVM args | See below                                    |
-| `SHUTDOWN_LOGGING_THREAD_DUMP`      | Shutdown thread dump | boolean  | `false`                                      |
-| `SHUTDOWN_LOGGING_HEAP_INFO`        | Shutdown heap info   | boolean  | `false`                                      |
-| `SHUTDOWN_LOGGING_SAMPLE_THRESHOLD` | Shutdown sampling    | percent  | 100                                          |
+| Env Var                               | Description          | Type     | Default                                      |
+| ------------------------------------- | -------------------- | -------- | -------------------------------------------- |
+| `TZ`                                  | TimeZone             | timezone | `Asia/Shanghai`                              |
+| `DBG_ENABLE`                          | Remote Debug         | boolean  | `true`                                       |
+| `SW_ENABLE`                           | Skywalking           | boolean  | `false`                                      |
+| `SW_AGENT_NAME`                       | Skywalking Service   | string   | `Your_ApplicationName`                       |
+| `SW_AGENT_COLLECTOR_BACKEND_SERVICES` | Skywalking HOST      | string   | `skywalking:11800`                           |
+| `TMPDIR`                              | Temporary Directory  | dirname  |                                              |
+| `JAVA_TMP_OPTS`                       | JVM tmpdir args      | JVM args | `-Djava.io.tmpdir=${TMPDIR}`                 |
+| `JAVA_MEMORY_MB`                      | Available memory     | size     | Set by `/proc/meminfo`-400M                  |
+| `HEAP_SIZE_RATIO`                     | Memory for the heap  | percent  | 80                                           |
+| `HEAP_SIZE_MB`                        | Available heap       | size     | `${HEAP_SIZE_RATIO}`% of `${JAVA_MEMORY_MB}` |
+| `JAVA_HEAP_OPTS`                      | JVM heap args        | JVM args | `-Xms${HEAP_SIZE_MB}M -Xmx${HEAP_SIZE_MB}M`  |
+| `JAVA_GC_OPTS`                        | JVM GC args          | JVM args | `-XX:+UseG1GC` plus configuration            |
+| `JAVA_USER_OPTS`                      | JVM other args       | JVM args |                                              |
+| `JAVA_OPTS`                           | JVM args             | JVM args | See below                                    |
+| `SHUTDOWN_LOGGING_THREAD_DUMP`        | Shutdown thread dump | boolean  | `false`                                      |
+| `SHUTDOWN_LOGGING_HEAP_INFO`          | Shutdown heap info   | boolean  | `false`                                      |
+| `SHUTDOWN_LOGGING_SAMPLE_THRESHOLD`   | Shutdown sampling    | percent  | 100                                          |
 
 If not explicitly set, `JAVA_OPTS` is defaulted to
 
