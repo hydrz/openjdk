@@ -32,7 +32,7 @@ GetAvailableMemory() {
 export JAVA_EGD_OPTS=${JAVA_EGD_OPTS:-"-Djava.security.egd=file:/dev/./urandom"}
 export JAVA_TMP_OPTS=${JAVA_TMP_OPTS:-$(if [[ -z ${TMPDIR} ]]; then echo ""; else echo "-Djava.io.tmpdir=$TMPDIR"; fi)}
 export JAVA_MEMORY_MB=${JAVA_MEMORY_MB:-$(GetAvailableMemory)}
-export HEAP_SIZE_RATIO=${HEAP_SIZE_RATIO:-"80"}
+export HEAP_SIZE_RATIO=${HEAP_SIZE_RATIO:-"95"}
 export HEAP_SIZE_MB=${HEAP_SIZE_MB:-$(expr ${JAVA_MEMORY_MB} \* ${HEAP_SIZE_RATIO} / 100)}
 export JAVA_HEAP_OPTS=${JAVA_HEAP_OPTS:-"-Xms${HEAP_SIZE_MB}M -Xmx${HEAP_SIZE_MB}M"}
 export JAVA_GC_OPTS=${JAVA_GC_OPTS:-"-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:+PrintCommandLineFlags"}
