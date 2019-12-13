@@ -27,7 +27,7 @@ GetAvailableMemory() {
 
   echo $memory
 }
--Duser.timezone=Asia/Shanghai
+
 # Setup default Java Options
 export JAVA_EGD_OPTS=${JAVA_EGD_OPTS:-"-Djava.security.egd=file:/dev/./urandom"}
 export JAVA_TMP_OPTS=${JAVA_TMP_OPTS:-$(if [[ -z ${TMPDIR} ]]; then echo ""; else echo "-Djava.io.tmpdir=$TMPDIR"; fi)}
