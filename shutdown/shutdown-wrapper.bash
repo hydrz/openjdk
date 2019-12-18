@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/setup-env.d/05-utils.bash
+source /setup-env.d/05-utils.bash
 
 function java_shutdown_hook() {
   JAVA_PID=$(ps -C java -o pid --no-headers)

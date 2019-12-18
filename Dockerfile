@@ -32,16 +32,15 @@ WORKDIR /opt
 
 ENV APP_DESTINATION app.jar
 
-ADD docker-entrypoint.bash ./
-ADD setup-env.d ./setup-env.d/
-ADD shutdown ./shutdown/
+COPY docker-entrypoint.bash /
+COPY setup-env.d /setup-env.d/
+COPY shutdown/ /shutdown/
+
 ADD app.jar $APP_DESTINATION
 
 # arthas
 COPY --from=hengyunabc/arthas:3.1.3-no-jdk /opt/arthas ./arthas
 
-RUN chmod +x ./docker-entrypoint.bash ./shutdown/*.bash ./setup-env.d/*.bash ./arthas/*.sh
+RUN chmod +x /docker-entrypoint.bash /shutdown/*.bash /setup-env.d/*.bash ./arthas/*.sh
 
-ENTRYPOINT ["./docker-entrypoint.bash"]
-
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["/docker-entrypoint.bash"]
