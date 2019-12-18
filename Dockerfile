@@ -18,6 +18,7 @@ RUN set -eux; \
     tcpdump \
     net-tools \
     telnet \
+    vim \
     ntp \
     ; \
     rm -rf /var/lib/apt/lists/*
@@ -40,6 +41,9 @@ ADD app.jar $APP_DESTINATION
 
 # arthas
 COPY --from=hengyunabc/arthas:3.1.3-no-jdk /opt/arthas ./arthas
+
+# skywalking
+COPY --from=apache/skywalking-base:6.5.0 /skywalking/agent ./skywalking
 
 RUN chmod +x /docker-entrypoint.bash /shutdown/*.bash /setup-env.d/*.bash ./arthas/*.sh
 
