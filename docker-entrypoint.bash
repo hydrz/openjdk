@@ -10,11 +10,11 @@ if is_java_cmd "$1"; then
   set -- java "$@"
 # else if the first argument is not executable assume java
 elif ! type "$1" &>/dev/null; then
-  set -- java "$@"
+  set -- java -jar $APP_DESTINATION
 fi
 
 # scan the setup-env.d directory for scripts to source for additional setup
-if [ -d "${SETUP_ENV:= /opt/setup-env.d}" ]; then
+if [ -d "${SETUP_ENV:=/setup-env.d}" ]; then
   for SCRIPT in $(ls "${SETUP_ENV}/"[0-9]*.bash | sort); do
     source ${SCRIPT}
   done
@@ -24,6 +24,9 @@ fi
 if is_java_cmd "$1"; then
   shift
   set -- java "$@"
+# else if the first argument is not executable assume java
+elif ! type "$1" &>/dev/null; then
+  set -- java -jar $APP_DESTINATION
 fi
 
 # Do we have JAVA_OPTS for a java command?
@@ -33,7 +36,7 @@ if [ "$1" = "java" -a -n "$JAVA_OPTS" ]; then
 fi
 
 # configure shutdown wrapper for diagnostics if enabled
-source /opt/shutdown/shutdown-env.bash
+source /shutdown/shutdown-env.bash
 
 # exec the entry point arguments as a command
 echo "Start command: $*"
