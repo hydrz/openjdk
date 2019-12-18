@@ -10,10 +10,11 @@ RUN sed -i 's/security.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-    bash \
-    libc6 \
-    libc-bin \
-    openssl \
+    \
+    # java.lang.UnsatisfiedLinkError: /usr/local/openjdk-11/lib/libfontmanager.so: libfreetype.so.6: cannot open shared object file: No such file or directory
+    # java.lang.NoClassDefFoundError: Could not initialize class sun.awt.X11FontManager
+    # https://github.com/docker-library/openjdk/pull/235#issuecomment-424466077
+    fontconfig libfreetype6 \
     wget \
     tcpdump \
     net-tools \
