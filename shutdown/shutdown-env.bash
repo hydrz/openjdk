@@ -2,6 +2,9 @@
 
 source ./setup-env.d/05-utils.bash
 
+export SHUTDOWN_LOGGING_THREAD_DUMP=${SHUTDOWN_LOGGING_THREAD_DUMP:-"true"}
+export SHUTDOWN_LOGGING_HEAP_INFO=${SHUTDOWN_LOGGING_HEAP_INFO:-"true"}
+
 # If configured, output a thread dump and/or heap info on shutdown by wrapping the java process
 if is_true "${SHUTDOWN_LOGGING_THREAD_DUMP}" || is_true "${SHUTDOWN_LOGGING_HEAP_INFO}"; then
   # default shutdown logging sample threshold is 100 (100%)
