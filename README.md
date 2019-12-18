@@ -100,9 +100,9 @@ If not explicitly set, `JAVA_OPTS` is defaulted to
 
 ```
 JAVA_OPTS:=-showversion \
+           ${SW_OPTS} \
            ${JAVA_TMP_OPTS} \
            ${DEBUG_AGENT} \
-           ${PROFILER_AGENT} \
            ${JAVA_HEAP_OPTS} \
            ${JAVA_GC_OPTS} \
            ${JAVA_USER_OPTS}
