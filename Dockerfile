@@ -15,6 +15,8 @@ RUN set -eux; \
     # java.lang.NoClassDefFoundError: Could not initialize class sun.awt.X11FontManager
     # https://github.com/docker-library/openjdk/pull/235#issuecomment-424466077
     fontconfig libfreetype6 \
+    iputils-ping \
+    netcat \
     wget \
     tcpdump \
     net-tools \
