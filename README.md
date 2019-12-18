@@ -89,17 +89,20 @@ If the default command (java) is used, then the entry point sources the [setup-e
 | `JAVA_GC_OPTS`                        | JVM GC args          | JVM args | `-XX:+UseG1GC` plus configuration            |
 | `JAVA_USER_OPTS`                      | JVM other args       | JVM args |                                              |
 | `JAVA_OPTS`                           | JVM args             | JVM args | See below                                    |
-| `SHUTDOWN_LOGGING_THREAD_DUMP`        | Shutdown thread dump | boolean  | `true`                                       |
-| `SHUTDOWN_LOGGING_HEAP_INFO`          | Shutdown heap info   | boolean  | `true`                                       |
+| `SHUTDOWN_LOGGING_THREAD_DUMP`        | Shutdown thread dump | boolean  | `false`                                      |
+| `SHUTDOWN_LOGGING_HEAP_INFO`          | Shutdown heap info   | boolean  | `false`                                      |
 | `SHUTDOWN_LOGGING_SAMPLE_THRESHOLD`   | Shutdown sampling    | percent  | 100                                          |
+| `SW_ENABLE`                           | Skywalking           | boolean  | `false`                                      |
+| `SW_AGENT_NAME`                       | Skywalking Service   | string   | `Your_ApplicationName`                       |
+| `SW_AGENT_COLLECTOR_BACKEND_SERVICES` | Skywalking HOST      | string   | `skywalking:11800`                           |
 
 If not explicitly set, `JAVA_OPTS` is defaulted to
 
 ```
 JAVA_OPTS:=-showversion \
+           ${SW_OPTS} \
            ${JAVA_TMP_OPTS} \
            ${DEBUG_AGENT} \
-           ${PROFILER_AGENT} \
            ${JAVA_HEAP_OPTS} \
            ${JAVA_GC_OPTS} \
            ${JAVA_USER_OPTS}
