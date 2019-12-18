@@ -12,7 +12,7 @@ if is_true "${SHUTDOWN_LOGGING_THREAD_DUMP}" || is_true "${SHUTDOWN_LOGGING_HEAP
   random_sample=$((RANDOM % 100))
   if ((random_sample < SHUTDOWN_LOGGING_SAMPLE_THRESHOLD)); then
     echo "Shutdown logging threshold of ${SHUTDOWN_LOGGING_SAMPLE_THRESHOLD}% satisfied with sample ${random_sample}."
-    set -- /shutdown/shutdown-wrapper.bash "$@"
+    set -- ./shutdown/shutdown-wrapper.bash "$@"
   else
     echo "Shutdown logging threshold of ${SHUTDOWN_LOGGING_SAMPLE_THRESHOLD}% NOT satisfied with sample ${random_sample}."
   fi
