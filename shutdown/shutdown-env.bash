@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./setup-env.d/05-utils.bash
+source /opt/setup-env.d/05-utils.bash
 
 export SHUTDOWN_LOGGING_THREAD_DUMP=${SHUTDOWN_LOGGING_THREAD_DUMP:-"true"}
 export SHUTDOWN_LOGGING_HEAP_INFO=${SHUTDOWN_LOGGING_HEAP_INFO:-"true"}
@@ -12,7 +12,7 @@ if is_true "${SHUTDOWN_LOGGING_THREAD_DUMP}" || is_true "${SHUTDOWN_LOGGING_HEAP
   random_sample=$((RANDOM % 100))
   if ((random_sample < SHUTDOWN_LOGGING_SAMPLE_THRESHOLD)); then
     echo "Shutdown logging threshold of ${SHUTDOWN_LOGGING_SAMPLE_THRESHOLD}% satisfied with sample ${random_sample}."
-    set -- /shutdown/shutdown-wrapper.bash "$@"
+    set -- /opt/shutdown/shutdown-wrapper.bash "$@"
   else
     echo "Shutdown logging threshold of ${SHUTDOWN_LOGGING_SAMPLE_THRESHOLD}% NOT satisfied with sample ${random_sample}."
   fi
